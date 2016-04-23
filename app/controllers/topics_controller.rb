@@ -2,12 +2,20 @@ class TopicsController < ApplicationController
   # index, new, create,這三個 action不用去抓特定的topic_id 所以不用放入 before_action
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
 
-
+# -1 增加某個topic一票
   def upvote
     @topic = Topic.find(params[:id])
     @topic.votes.create
     redirect_to (topics_path)
   end
+
+  def cutvote
+    @topic = Topic.find(params[:id])
+    @topic.votes.first.destroy
+    redirect_to(topics_path)
+  end
+
+
 
   # GET /topics
   # GET /topics.json
