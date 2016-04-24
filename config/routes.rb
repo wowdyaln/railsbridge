@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :topics do
     member do
       post 'upvote'
-      post 'cutvote'
+      delete 'cutvote'
     end
   end
   # You can have the root of your site routed with "root"

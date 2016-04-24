@@ -11,8 +11,12 @@ class TopicsController < ApplicationController
 
   def cutvote
     @topic = Topic.find(params[:id])
-    @topic.votes.first.destroy
-    redirect_to(topics_path)
+    if @topic.votes.count > 0
+      @topic.votes.first.destroy
+      redirect_to(topics_path)
+    else
+      redirect_to(topics_path, notice: "沒有票數了，別殘忍")
+    end
   end
 
 
